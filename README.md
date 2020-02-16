@@ -5,8 +5,8 @@ Stwórz config.py
 
 i wklej
 
-_alexa_key_ = 'TUTAJ_WKLEJ_SWOJ_BOT_TOKEN'
-_alexa_prefix_ = 'TUTAJ_DAJ_SWOJ_PREFIX'
+\_alexa_key\_ = 'TUTAJ_WKLEJ_SWOJ_BOT_TOKEN'\n
+\_alexa_prefix\_ = 'TUTAJ_DAJ_SWOJ_PREFIX'
 
 Depedencies
   discord #v0.16
