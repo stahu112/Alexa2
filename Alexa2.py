@@ -16,7 +16,7 @@ async def rozmaryn(context):
 
 @client.command(name='yt', brief="Zwraca link do filmiku na yt",
                 description="Wysyła link do filmu na youtube po wybranym zapytaniu, przykładowo: alexa yt crab rave",
-                pass_context=True, aliases=['youtube'])
+                pass_context=True, aliases=['youtube', 'play'])
 async def yt(context):
     query = context.message.content.split()
     query.pop(0)
