@@ -4,7 +4,6 @@ from discord.ext.commands import Bot
 import random
 import alexa_web
 
-
 _alexa_prefix_ = ['alexa ', '!', '.']
 
 client = Bot(command_prefix=_alexa_prefix_)
@@ -15,6 +14,24 @@ async def rozmaryn(context):
     rhymes = ['gitaryn', 'penisiaryn', 'kupsztalyn', 'abituryn', 'akwamaryn', 'alizaryn', 'aneuryn', 'olegezaryn',
               'fosfobakteryn', 'mandaryn', 'zjebaryn', 'ultramaryn', 'huberyn', 'hitleryn', 'uberyn', 'pikoloryn']
     await client.say(context.message.author.mention + " " + random.choice(rhymes))
+
+
+@client.command(name='pac', brief='Paca kogos', description='pac pac pac', pass_context=True, aliases=['slap', 'pacnij',
+                                                                                                       'pacaj',
+                                                                                                       'jebnij'])
+async def pac(context):
+    query = context.message.content.split()
+    if query[0] == 'alexa':
+        query.pop(0)
+    query.pop(0)
+
+    out = ''
+    for s in query:
+        out += ' ' + s
+
+    await client.send_file(context.message.channel, "resources/pac.gif")
+    await client.send_typing(context.message.channel)
+    await client.say(context.message.author.mention + " paca " + out)
 
 
 @client.command(name='yt', brief="Zwraca link do filmiku na yt",
