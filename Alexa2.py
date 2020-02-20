@@ -4,7 +4,10 @@ from discord.ext.commands import Bot
 import random
 import alexa_web
 
-client = Bot(command_prefix=config._alexa_prefix_)
+
+_alexa_prefix_ = ['alexa ', '!', '.']
+
+client = Bot(command_prefix=_alexa_prefix_)
 
 
 @client.command(name='rozmaryn', brief='Rymuje rozmarynuje', pass_context=True)
@@ -19,12 +22,27 @@ async def rozmaryn(context):
                 pass_context=True, aliases=['youtube', 'play'])
 async def yt(context):
     query = context.message.content.split()
-    query.pop(0)
+    if query[0] == 'alexa':
+        query.pop(0)
     query.pop(0)
 
     await client.send_typing(context.message.channel)
     vid = alexa_web.get_yt(query)
     await client.say(context.message.author.mention + " " + vid)
+
+
+@client.command(name='img', brief="Zwraca obrazek z google graphics",
+                description="Zwraca obrazek z google graphics po zapytaniu",
+                pass_context=True, aliases=['pokaz', 'show', 'i'])
+async def img(context):
+    query = context.message.content.split()
+    if query[0] == 'alexa':
+        query.pop(0)
+    query.pop(0)
+
+    await client.send_typing(context.message.channel)
+    image = alexa_web.get_img_google(query)
+    await client.say(context.message.author.mention + " " + image)
 
 
 @client.event
