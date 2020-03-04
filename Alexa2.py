@@ -1,4 +1,5 @@
 import discord
+import datetime
 import config
 from discord.ext.commands import Bot
 import random
@@ -29,9 +30,34 @@ async def pac(context):
     for s in query:
         out += ' ' + s
 
-    await client.send_file(context.message.channel, "resources/pac.gif")
     await client.send_typing(context.message.channel)
+    await client.say('https://cdn.discordapp.com/attachments/678312935189119010/680166939221688363/pac.gif')
     await client.say(context.message.author.mention + " paca " + out)
+
+
+@client.command(name='kluska', pass_context=True, aliases=['kektopus'])
+async def kluska(context):
+    query = context.message.content.split()
+    if query[0] == 'alexa':
+        query.pop(0)
+    query.pop(0)
+
+    out = ''
+    for s in query:
+        out += ' ' + s
+
+    await client.send_typing(context.message.channel)
+    await client.say('https://cdn.discordapp.com/attachments/496353603460661268/684354040443961349/ESLZ669XUAMizb8.png')
+
+
+async def papaj():
+    await client.wait_until_ready()
+    channel = client.get_channel('678312935189119010')
+    while not client.is_closed:
+        current_time = datetime.datetime.now()
+        if (current_time.hour == 16 and current_time.minute == 6):
+            await channel.send('Wybiła godzina papieska')
+            await channel.send('https://www.youtube.com/watch?v=7nv6h3X4SfI')
 
 
 @client.command(name='yt', brief="Zwraca link do filmiku na yt",
@@ -69,5 +95,5 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-
+client.loop.create_task(papaj())
 client.run(config._alexa_key_)
