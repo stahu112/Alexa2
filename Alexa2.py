@@ -50,16 +50,6 @@ async def kluska(context):
     await client.say('https://cdn.discordapp.com/attachments/496353603460661268/684354040443961349/ESLZ669XUAMizb8.png')
 
 
-async def papaj():
-    await client.wait_until_ready()
-    channel = client.get_channel('678312935189119010')
-    while not client.is_closed:
-        current_time = datetime.datetime.now()
-        if (current_time.hour == 16 and current_time.minute == 6):
-            await channel.send('Wybiła godzina papieska')
-            await channel.send('https://www.youtube.com/watch?v=7nv6h3X4SfI')
-
-
 @client.command(name='yt', brief="Zwraca link do filmiku na yt",
                 description="Wysyła link do filmu na youtube po wybranym zapytaniu, przykładowo: alexa yt crab rave",
                 pass_context=True, aliases=['youtube', 'play'])
@@ -88,6 +78,11 @@ async def img(context):
     await client.say(context.message.author.mention + " " + image)
 
 
+@client.command(name='katnape', aliases=['nape', 'pogrzeb', 'odpoczynek'])
+async def kluska():
+    await client.say('https://www.youtube.com/watch?v=tMVNd08R3jA')
+
+
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -95,5 +90,4 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-client.loop.create_task(papaj())
 client.run(config._alexa_key_)
