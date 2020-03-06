@@ -79,8 +79,16 @@ async def img(context):
 
 
 @client.command(name='katnape', aliases=['nape', 'pogrzeb', 'odpoczynek'])
-async def kluska():
+async def nape():
     await client.say('https://www.youtube.com/watch?v=tMVNd08R3jA')
+
+
+@client.command(name='jasne', pass_context=True)
+async def jasne(context):
+    await client.send_typing(context.message.channel)
+    await client.say("Odpalaj")
+    await client.send_typing(context.message.channel)
+    await client.say("Lecimy")
 
 
 @client.event
