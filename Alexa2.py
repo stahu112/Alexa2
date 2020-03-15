@@ -64,6 +64,13 @@ async def yt(context):
     await client.say(context.message.author.mention + " " + vid)
 
 
+@client.command(name='waifu', brief="Zwraca waifu", pass_context=True)
+async def waifu(context):
+    await client.send_typing(context.message.channel)
+    ret_url = alexa_web.get_waifu()
+    await client.say(ret_url[1] + "\n" + ret_url[0])
+
+
 @client.command(name='img', brief="Zwraca obrazek z google graphics",
                 description="Zwraca obrazek z google graphics po zapytaniu",
                 pass_context=True, aliases=['pokaz', 'show', 'i'])

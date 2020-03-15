@@ -2,7 +2,7 @@ import requests
 import re
 import json
 from bs4 import BeautifulSoup
-
+import json
 
 headers_Get = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
@@ -13,6 +13,18 @@ headers_Get = {
     'Connection': 'keep-alive',
     'Upgrade-Insecure-Requests': '1'
 }
+
+
+def get_waifu():
+    s = requests.Session()
+    url = 'https://mywaifulist.moe/random'
+    r = s.get(url)
+    parsed = BeautifulSoup(r.text, "html.parser")
+    content = parsed.find('script', {'type': "application/ld+json"}).text
+    print(content)
+    j = json.loads(content)
+    ret = [j["name"], j["image"]]
+    return ret
 
 
 def get_img_google(q):
