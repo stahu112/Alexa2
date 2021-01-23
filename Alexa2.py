@@ -3,6 +3,7 @@ import datetime
 import config
 from discord.ext.commands import Bot
 import random
+import subprocess
 import alexa_web
 
 _alexa_prefix_ = ['alexa ', '!', '.']
@@ -98,6 +99,19 @@ async def jasne(context):
     await client.say("Lecimy")
 
 
+@client.command(name='t', pass_context=True)
+async def t(context):
+    query = context.message.content.split()
+    if query[0] == 'alexa':
+        query.pop(0)
+    query.pop(0)
+
+    cmd = query
+    output = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+
+    await context.send(output)
+
+
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -105,4 +119,7 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+
+commands = ['python3', '-m', 'pip', 'instal' '-U' '-y' 'discord.py']
+outpt = subprocess.Popen(commansd, stdout=subprocess.PIPE).communicate()[0]
 client.run(config._alexa_key_)
