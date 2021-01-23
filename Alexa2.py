@@ -120,6 +120,4 @@ async def on_ready():
     print('------')
 
 
-commands = ['python3', '-m', 'pip', 'instal' '-U' '-y' 'discord.py']
-outpt = subprocess.Popen(commansd, stdout=subprocess.PIPE).communicate()[0]
 client.run(config._alexa_key_)
